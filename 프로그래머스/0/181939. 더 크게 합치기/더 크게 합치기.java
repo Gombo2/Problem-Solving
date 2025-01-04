@@ -1,18 +1,11 @@
 class Solution {
     public int solution(int a, int b) {
         int answer = 0;
-        String as = Integer.toString(a);
-        String bs = Integer.toString(b);
-        String sum1 = as + bs;
-        String sum2 = bs + as;
-    
-        
-        if (Integer.parseInt(sum1) >= Integer.parseInt(sum2)) {
-            return Integer.parseInt(sum1);
+        int aLong = Integer.parseInt(""+a+b);
+        int bLong = Integer.parseInt(""+b+a);
+        if (aLong >= bLong) {
+            return aLong;
         }
-        else {
-            return Integer.parseInt(sum2);
-        }        
-        
+            return bLong;
     }
 }
