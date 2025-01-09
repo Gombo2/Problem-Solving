@@ -9,6 +9,8 @@ class Solution {
             answer[i] = strings[i].substring(n, n+1); //substring 이용하여 idx answer[] 입력
         }
         Arrays.sort(answer); //idx 정렬
+        String temp = ""; //임시 저장 temp
+        String asTemp = "";
         
         List<String> list = new ArrayList<>(Arrays.asList(strings));
         for(int i = 0; i < answer.length; i++) {
@@ -20,7 +22,6 @@ class Solution {
                 }
             }
         }
-        
         return answer;
     }
 }
