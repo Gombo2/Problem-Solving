@@ -23,7 +23,6 @@ class Solution {
     
     private int tenToTwoSum(int bigNum) {
         String two = "";
-        int temp = 0;
         int count = 0;
         two = Integer.toBinaryString(bigNum);
         for(int i = 0; i < two.length(); i++) {
