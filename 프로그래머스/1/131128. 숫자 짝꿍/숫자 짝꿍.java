@@ -1,29 +1,39 @@
 import java.util.*;
-
+import java.lang.*;
 class Solution {
     public String solution(String X, String Y) {
         int[] xCount = new int[10];
         int[] yCount = new int[10];
-
-        for (char c : X.toCharArray()) {
-            xCount[c - '0']++;
+        xCount = getEachCount(xCount, X);
+        yCount = getEachCount(yCount, Y);
+        
+        StringBuilder answer = new StringBuilder();
+        
+        for(int j = xCount.length - 1; j >= 0; j--) {
+           int minCount = Math.min(xCount[j],yCount[j]);
+           for(int k = 0; k < minCount; k++) {
+               answer.append(j);
+           } 
         }
-
-        for (char c : Y.toCharArray()) {
-            yCount[c - '0']++;
+        
+        return getResult(answer.toString());
+    }
+    
+    private int[] getEachCount(int[] sum, String str) {
+        for(char i : str.toCharArray()) {
+            sum[i - '0']++;
         }
-
-        StringBuilder result = new StringBuilder();
-
-        for (int i = 9; i >= 0; i--) {
-            int minCount = Math.min(xCount[i], yCount[i]);
-            result.append(String.valueOf(i).repeat(minCount));
+        return sum;
+    }
+    
+    
+    private String getResult(String s) {
+        if(s.length() == 0) {
+            return "-1";
+        } else if(s.charAt(0) == '0') {
+            return "0";
+        } else {
+            return s;
         }
-
-        if (result.length() == 0) return "-1";
-
-        if (result.charAt(0) == '0') return "0";
-
-        return result.toString();
     }
 }
