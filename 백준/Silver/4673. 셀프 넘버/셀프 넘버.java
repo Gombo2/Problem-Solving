@@ -5,7 +5,8 @@ import java.io.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+//        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringBuilder sb = new StringBuilder();
         Set<Integer> numHashSet = new HashSet<>();
         int num = 1;
         int curSum = 0;
@@ -26,9 +27,8 @@ public class Main {
 
         Iterator<Integer> it = numHashSet.iterator();
         while(it.hasNext()) {
-            bw.write(it.next() + "\n");
+            sb.append(it.next()).append("\n");
         }
-        bw.flush();
-        bw.close();
+        System.out.println(sb);
     }
 }
