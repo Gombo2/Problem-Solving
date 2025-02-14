@@ -1,9 +1,11 @@
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+import java.io.*;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         Set<Integer> numHashSet = new HashSet<>();
         int num = 1;
         int curSum = 0;
@@ -24,7 +26,9 @@ public class Main {
 
         Iterator<Integer> it = numHashSet.iterator();
         while(it.hasNext()) {
-            System.out.println(it.next());
+            bw.write(it.next() + "\n");
         }
+        bw.flush();
+        bw.close();
     }
 }
