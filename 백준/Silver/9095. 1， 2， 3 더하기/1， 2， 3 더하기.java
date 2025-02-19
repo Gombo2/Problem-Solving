@@ -38,9 +38,7 @@ public class Main {
         if(num <= 3) {
             return memoization[num];
         }
-        if(memoization[num] != 0) {
-            memoization[num] = memoization[num - 1] + memoization[num - 2] + memoization[num - 3];
-        } else {
+        if(memoization[num] == 0) {
             memoization[num] = getNumberCasesSum(num - 1) + getNumberCasesSum(num - 2) + getNumberCasesSum(num - 3);
         }
 
