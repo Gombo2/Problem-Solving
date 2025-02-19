@@ -2,8 +2,7 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
-    static int sum;
-    static int maxSum = -1000000001;
+    static int maxSum = -1000000001; //MIN_VALUE 사용 가능
     static int minSum = 1000000001;
 
     static int[] numArr;
@@ -29,7 +28,10 @@ public class Main {
             operatorCaseArr[j] = Integer.parseInt(st.nextToken());
         }
 
+        //숫자배열, 연산자 개수 초기화
+
         bt(numArr[0], 1);
+        //백트래킹 시작
 
         sb.append(maxSum).append("\n").append(minSum);
         System.out.println(sb);
@@ -42,7 +44,7 @@ public class Main {
             minSum = Math.min(minSum, sum);
             return;
         }
-
+        // 조합문제 비슷하게 접근
         for (int i = 0; i < 4; i++) {
 
             if (operatorCaseArr[i] > 0) {
