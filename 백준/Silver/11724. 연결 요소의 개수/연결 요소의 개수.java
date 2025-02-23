@@ -1,50 +1,47 @@
-import java.util.*;
 import java.io.*;
+import java.util.StringTokenizer;
 
+// 연결 요소의 개수
 public class Main {
+    static int N;
+    static int M;
+    static boolean[][] map;
+    static boolean[] visited;
+    static int count = 0;
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st;
 
-        int count = 0;
-
         st = new StringTokenizer(br.readLine());
-        int nodeCases = Integer.parseInt(st.nextToken());
-        int edgesCases = Integer.parseInt(st.nextToken());
-        int[][] map = new int[nodeCases + 1][nodeCases + 1];
-        boolean[] visited = new boolean[nodeCases + 1];
-
-        for(int i = 0; i < edgesCases; i++) {
+        N = Integer.parseInt(st.nextToken());                   // N : 정점의 갯수(1~1000)
+        M = Integer.parseInt(st.nextToken());                   // M : 간선의 갯수
+        map = new boolean[N+1][N+1];
+        for(int i=0; i<M; i++){
             st = new StringTokenizer(br.readLine());
-            int column = Integer.parseInt(st.nextToken());
-            int row = Integer.parseInt(st.nextToken());
-            map[row][column] = 1;
-            map[column][row] = 1;
+            int a = Integer.parseInt(st.nextToken());
+            int b = Integer.parseInt(st.nextToken());
+            map[a][b] = map[b][a] = true;
         }
+        visited = new boolean[N+1];
 
-        for (int i = 1; i <= nodeCases; i++) {
-            if (!visited[i]) {  
-                dfs(map, visited, i);
+        for(int i=1; i<=N; i++){
+            if(!visited[i]){
                 count++;
+                dfs(i);
             }
         }
-
-        System.out.println(count);
+        bw.write(count + "\n");
+        bw.flush();
     }
 
-    private static void dfs(int[][] map, boolean[] visited, int row) {
-        Stack<Integer> stack = new Stack<>();
-        stack.push(row);
-        visited[row] = true;
+    public static void dfs(int start){
+        visited[start] = true;
 
-        while(!stack.isEmpty()) {
-            int current = stack.pop();
-            visited[current] = true;
-
-            for(int i = 1; i < map.length; i++) {
-                if(map[current][i] == 1 && !visited[i]) {
-                    stack.push(i);
-                }
+        for(int i=1; i<=N; i++){
+            if(!visited[i] && map[start][i]){
+                dfs(i);
             }
         }
     }
