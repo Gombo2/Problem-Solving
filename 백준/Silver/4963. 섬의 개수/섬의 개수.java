@@ -46,20 +46,20 @@ public class Main {
     }
 
     private static void dfs(int row, int column, int[][] map, boolean[][] visited) { // 수정
-        Stack<Node> stack = new Stack<>();
-        stack.push(new Node(row, column));
-        visited[row][column] = true; 
+        Queue<Node> queue = new LinkedList<>();
+        queue.offer(new Node(row, column));
+        visited[row][column] = true;
 
-        while (!stack.isEmpty()) {
-            Node node = stack.pop();
+        while (!queue.isEmpty()) {
+            Node node = queue.poll();
 
             for (int i = 0; i < 8; i++) {
-                int curX = node.column + moveX[i]; 
+                int curX = node.column + moveX[i];
                 int curY = node.row + moveY[i];
 
                 if (checkBoundary(curY, curX, map) && map[curY][curX] == 1 && !visited[curY][curX]) {
-                    stack.push(new Node(curY, curX));
-                    visited[curY][curX] = true; 
+                    queue.offer(new Node(curY, curX));
+                    visited[curY][curX] = true;
                 }
             }
         }
@@ -71,9 +71,9 @@ public class Main {
 
     public static class Node {
         int row;
-        int column; 
+        int column;
 
-        public Node(int row, int column) { 
+        public Node(int row, int column) {
             this.row = row;
             this.column = column;
         }
